@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Registrations</title>
+</head>
+<body>
+<div th:replace="header"></div>
+
+<form class="float-right form-inline my-2 my-lg-0 p-2" th:action="@{/search}" method="get">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search registrations" name="query" aria-label="Search" th:value="${query}"/>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+
+<h1 class="form-group col-md-12 mt-5">Registrations</h1>
+
+<table class="form-group col-md-12 mt-5 table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th> ID</th>
+        <th> Dentist</th>
+        <th> Time</th>
+        <th> </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${registrations.empty}">
+        <td colspan="4"> No Registrations!</td>
+    </tr>
+
+    <tr th:each="reg : ${registrations}">
+        <td th:text="${reg._id}"></td>
+        <td th:text="${reg.dentistName}"></td>
+        <td th:text="${#dates.format(reg.visitDateTime, 'dd/mm/yyyy hh:00 a')}"></td>
+        <td ><a th:href="@{/registration/{id}(id=${reg._id})}"> Details </a></td>
+    </tr>
+    </tbody>
+
+</table>
+</body>
+</html>

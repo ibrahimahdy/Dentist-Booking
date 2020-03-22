@@ -1,0 +1,10 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>CGI Dentist</title>
+</head>
+<body>
+<div th:replace="header"></div>
+<h3 class="form-group col-md-12 mt-5 text-center" th:text="#{welcome.message}"></h3>
+<h5 class="form-group col-md-12 text-center">To book an appointment, visit our <a class="btn btn-outline-secondary my-2 my-lg-0 m-2" th:href="@{/register}">Registration</a> page!</h5>
+</body>
+</html>

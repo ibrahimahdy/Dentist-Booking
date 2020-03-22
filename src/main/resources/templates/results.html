@@ -1,0 +1,16 @@
+<html xmlns:th="https://www.thymeleaf.org" lang="">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="#{request.ok}">request.ok</title>
+</head>
+
+<body>
+<div th:replace="header"></div>
+
+<h5 class="form-group col-md-12 mt-5" th:text="#{request.ok}">registration.ok</h5>
+<a th:href="@{/registration/{id}(id=${param.regId})}" class="btn btn-outline-secondary my-2 my-lg-0 m-2" th:text="#{request.view}"> request.view </a>
+<a th:href="@{/editRegistration/{id}(id=${param.regId})}" class="btn btn-outline-secondary my-2 my-lg-0 m-2" th:text="#{request.edit}"> request.edit </a>
+
+</body>
+</html>

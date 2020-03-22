@@ -1,0 +1,71 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="#{form.header}">form.header</title>
+</head>
+
+<body>
+
+<div th:replace="header"></div>
+
+<h1 class="form-group col-md-12 mt-5" th:text="#{form.header}">form.header</h1>
+
+<form action="#" th:action="@{/register}" th:object="${dentistVisitDTO}" method="post">
+        <div class="form-group col-md-4 mt-5">
+            <label for="name" th:text="#{dentist.name}">dentist.name</label>
+            <select id="name" th:field="*{dentistName}" class="form-control">
+                <option th:selected="true" value="" th:text="#{Select.dentist}">Select.dentist</option>
+                <option th:value="Paavo" th:text="Paavo"></option>
+                <option th:value="Aleksei" th:text="Aleksei"></option>
+                <option th:value="Ibrahim" th:text="Ibrahim"></option>
+            </select>
+
+            <label id="nameError" class="form-text text-danger" th:if="${#fields.hasErrors('dentistName')}" th:errors="*{dentistName}">name.error</label>
+        </div>
+        <div class="form-group col-md-4 mt-5">
+            <label for="datetimepicker1" th:text="#{visit.date}">visit.date</label>
+            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"
+                       th:field="*{visitDateTime}" id="date"/>
+                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
+                </div>
+            </div>
+            <label id="visitDateError" class="form-text text-danger" th:if="${#fields.hasErrors('visitDateTime')}" th:errors="*{visitDateTime}">date.error</label>
+        </div>
+
+    <div class="form-group col-md-4 mt-5">
+        <button type="submit" class="btn btn-primary" th:text="#{register.visit}"></button>
+    </div>
+
+</form>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/assets/moment/moment.min.js}"></script>
+<script th:src="@{/assets/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.js}"></script>
+
+<script>
+    $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, {
+        icons: {
+            time: 'far fa-clock',
+            date: 'far fa-calendar',
+            up: 'fas fa-arrow-up',
+            down: 'fas fa-arrow-down',
+            previous: 'fas fa-chevron-left',
+            next: 'fas fa-chevron-right',
+            today: 'far fa-calendar-check-o',
+            clear: 'far fa-trash',
+            close: 'far fa-times'
+        } });
+
+    $('#datetimepicker1').datetimepicker({
+        format: 'DD/MM/YYYY h:00 A',
+        minDate:new Date(),
+        disabledHours: [0, 1, 2, 3, 4, 5, 6, 7, 18, 19, 20, 21, 22, 23]
+    });
+</script>
+</body>
+</html>
